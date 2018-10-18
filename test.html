@@ -8,41 +8,15 @@
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<style type="text/css">
 		#demo {
-			font-size: 100px;
+			font-size: 10px;
 			color: rgba(182, 18, 160, 0.719);
 		}
 	</style>
 	<script type="text/javascript">
 		$(function () {
-			$("#btn").click(function () {
-				var time = new Date().getDay();
-				alert(time);
-				var x = "";
-				console.log(time);
-				switch (time) {
-					case 1:
-						x = "Monday";
-						break;
-					case 2:
-						x = "Tuesday";
-						break;
-					case 3:
-						x = "Wednesday";
-						break;
-					case 4:
-						x = "Thursday";
-						break;
-					case 5:
-						x = "Friday";
-						break;
-					case 6:
-						x = "Saturday";
-						break;
-					case 7:
-						x = "Sunday";
-						break
-				}
-				document.getElementById("demo").innerHTML = x ;
+			$("#btn").click(function(){
+				var n = document.getElementById("num").value;
+				alert(n);
 			})
 		})
 	</script>
@@ -50,9 +24,10 @@
 
 <body>
 	<div>
-		<button id="btn">点击我</button><br>
+		<input id="num" type="text"><br>
+		<button id="btn">哈哈</button>
 		<span id="demo"></span>
 	</div>
 </body>
-
+	
 </html>
