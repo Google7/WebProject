@@ -4,29 +4,57 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Test</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<link href="bootstrap-4.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
 	<style type="text/css">
 		#demo {
 			font-size: 10px;
-			color: rgba(182, 18, 160, 0.719);
+			color: red;
 		}
 	</style>
 	<script type="text/javascript">
 		$(function () {
-			$("#btn").click(function(){
-				var n = document.getElementById("num").value;
-				alert(n);
-			})
+            var n = 0;
+			$("#btn").click(function () { 
+                n++;
+                var ss = document.getElementById("hello");
+                if(n%2==0){
+					ss.style.color = "red";
+					ss.innerHTML="哈哈";
+                } else {
+					ss.style.color = "green";
+					ss.innerHTML="呵呵";
+                }
+                console.log(n);
+                
+             })
+           
 		})
 	</script>
 </head>
 
 <body>
 	<div>
-		<input id="num" type="text"><br>
-		<button id="btn">哈哈</button>
+		<h1 id="hello">Hello</h1>
+		<button id="btn">点我</button>
 		<span id="demo"></span>
+	</div>
+	
+	<div>
+		<!-- 标准的按钮 -->
+<button type="button" class="btn btn-default">默认按钮</button>
+<!-- 提供额外的视觉效果，标识一组按钮中的原始动作 -->
+<button type="button" class="btn btn-primary">原始按钮</button>
+<!-- 表示一个成功的或积极的动作 -->
+<button type="button" class="btn btn-success">成功按钮</button>
+<!-- 信息警告消息的上下文按钮 -->
+<button type="button" class="btn btn-info">信息按钮</button>
+<!-- 表示应谨慎采取的动作 -->
+<button type="button" class="btn btn-warning">警告按钮</button>
+<!-- 表示一个危险的或潜在的负面动作 -->
+<button type="button" class="btn btn-danger">危险按钮</button>
+<!-- 并不强调是一个按钮，看起来像一个链接，但同时保持按钮的行为 -->
+<button type="button" class="btn btn-link">链接按钮</button>
 	</div>
 </body>
 	
