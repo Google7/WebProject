@@ -1,6 +1,7 @@
-﻿function demo(name, age) {
-  this.name = name;
-  this.age = age;
-}
-var ss = new demo("Hello", "World");
-console.log(ss.name+ss.age)
+﻿var ss = '{ "employees" : [' +
+  '{ "firstName":"John" , "lastName":"Doe" },' +
+  '{ "firstName":"Anna" , "lastName":"Smith" },' +
+  '{ "firstName":"Peter" , "lastName":"Jones" } ],"name":"jian"}';
+var obj = JSON.parse(ss);
+console.log(typeof (obj));
+console.log(obj)

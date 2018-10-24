@@ -17,29 +17,38 @@
 	</style>
 	<script type="text/javascript">
 		$(function () {
-			var n = 0;
-			$(".btn").click(function () {
-				n++;
-				var ss = document.getElementById("hello");
-				if (n % 2 == 0) {
-					ss.style.color = "red";
-					ss.innerHTML = "哈哈";
-				} else {
-					ss.style.color = "green";
-					ss.innerHTML = "呵呵";
-				}
-				console.log(n);
-				document.write(666)
-
+			var out = document.getElementById("hello");
+	
+			$(".btn-default").click(function () {
+				out.innerHTML = document.getElementsByClassName("btn")[0].innerHTML;
+			})
+			$(".btn-primary").click(function () {
+				out.innerHTML = document.getElementsByClassName("btn")[1].innerHTML;
+			})
+			$(".btn-success").click(function () {
+				out.innerHTML = document.getElementsByClassName("btn")[2].innerHTML;
+			})
+			$(".btn-info").click(function () {
+				out.innerHTML = document.getElementsByClassName("btn")[3].innerHTML;
+			})
+			$(".btn-warning").click(function () {
+				out.innerHTML = document.getElementsByClassName("btn")[4].innerHTML;
+			})
+			$(".btn-danger").click(function () {
+				out.innerHTML = document.getElementsByClassName("btn")[5].innerHTML;
+			})
+			$(".btn-link").click(function () {
+				out.innerHTML = document.getElementsByClassName("btn")[6].innerHTML;
 			})
 		})
+		
 	</script>
 </head>
 
 <body>
 	<div>
 		<h1 id="hello">Hello</h1>
-	
+		<img id="img" src="images\Help.png" alt="!!!">
 		<!-- 标准的按钮 -->
 		<button type="button" class="btn btn-default">默认按钮</button>
 		<!-- 提供额外的视觉效果，标识一组按钮中的原始动作 -->
