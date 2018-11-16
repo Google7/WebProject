@@ -12,26 +12,28 @@
 		}
 	</style>
 	<script type="text/javascript">
-		$(function(){
-			var obj = new Object;
-			
+		$(function () {
+			var div = document.getElementById("div");
+			var span = document.createElement("input");
+			span.setAttribute("value", "hello");
+			span.setAttribute("class", "ss");
+			div.appendChild(span);
 		})
-
 	</script>
 </head>
 
 <body>
-	<div id="dv">
+	<div id="div">
 		<button id="ha" onclick="demo()">呵呵</button>
-		<button id="ho" class="ss">吼吼</button>
+		<button id="ho" class="ss">吼吼</button><br />
 	</div>
 	<div>
 		<span id="list">嘿嘿嘿</span>
 		<h4 id="aa">啊啊啊</h4>
 		<input id="ipt" type="text" value="啥啥啥">
 	</div>
-	<div id="div">
-		<table id="table"> 
+	<div id="div2">
+		<table id="table">
 			<tr id="tr">
 				<td id="td" name="myname">Jackie</td>
 				<td id="jqc" name="jian">jainqichen</td>
