@@ -21,5 +21,4 @@ function findNum(str) {
 }
 var obj = findNum(str);
 console.log(obj);
-console.log(str.charAt(0));
-console.log(str.charCodeAt(0));
+console.log("哈哈哈");
