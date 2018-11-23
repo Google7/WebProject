@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Test</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="bootstrap-4.0.0/dist/css/bootstrap.min.css"
+    />
+    <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="test.js"></script>
+    <style type="text/css">
+      .ss {
+        color: red;
+      }
+    </style>
+    
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<title>Test</title>
-	<link rel="stylesheet" type="text/css" href="bootstrap-4.0.0/dist/css/bootstrap.min.css">
-	<script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
-	<style type="text/css">
-		.ss {
-			color: red;
-		}
-	</style>
-	<script type="text/javascript">
-		$(function () {
-			var div = document.getElementById("div");
-			var span = document.createElement("input");
-			span.setAttribute("value", "hello");
-			span.setAttribute("class", "ss");
-			div.appendChild(span);
-		})
-	</script>
-</head>
-
-<body>
-	<div id="div">
-		<button id="ha" onclick="demo()">呵呵</button>
-		<button id="ho" class="ss">吼吼</button><br />
-	</div>
-	<div>
-		<span id="list">嘿嘿嘿</span>
-		<h4 id="aa">啊啊啊</h4>
-		<input id="ipt" type="text" value="啥啥啥">
-	</div>
-	<div id="div2">
-		<table id="table">
-			<tr id="tr">
-				<td id="td" name="myname">Jackie</td>
-				<td id="jqc" name="jian">jainqichen</td>
-			</tr>
-		</table>
-	</div>
-</body>
-
+  <body>
+    <div id="div">
+      <button id="ha" onclick="begin()">开始</button>
+      <button id="ho" onclick="end()" class="ss">结束</button><br />
+      <button onclick="hit()">点我</button>
+      <input id="num" type="text" style="width:500px" />
+      <a href="https://www.baidu.com/">666</a>
+    </div>
+    <div>
+      <span id="list">嘿嘿嘿</span>
+      <h4 id="aa">啊啊啊</h4>
+      <input id="ipt" type="text" value="啥啥啥" />
+    </div>
+    <div id="div2">
+      <table id="table">
+        <tr id="tr">
+          <td id="td" name="myname">Jackie</td>
+          <td id="jqc" name="jian">jainqichen</td>
+        </tr>
+      </table>
+    </div>
+    <button id="demo" onclick="demo()">哈哈</button>
+  </body>
 </html>

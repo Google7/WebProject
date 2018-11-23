@@ -1,25 +1,38 @@
-﻿var str = "d5r44va8wet4vbad8aebadhtyui4564pjmbn666";
+﻿window.onload = function() {
+    for (let i = 0; i < 100; i++) {
+      var span = document.createElement("span");
+      span.innerHTML = "O(∩_∩)O哈哈~";
+      var p = document.createElement("p");
+      var list = document.getElementById("list");
+      list.append(span);
+      list.append(p);
+    }
+  };
+  var mywin = window.open("", "", "width=200,height=100,left=500,top=300");
+  mywin.document.write("哈哈哈");
+  mywin.focus();
+  mywin.close();
 
-function findNum(str) {
-    var tmp = "";
-    var arr = [];
-    for (var i = 0; i < str.length; i++) {
-        var cur = str[i];
-        if (!isNaN(cur)) {
-            tmp += cur;
-        } else {
-            if (tmp) {
-                arr.push(tmp);
-                tmp = "";
-            }
-        }
+  var ipt;
+  var n = 0;
+  var t;
+  var dt = new Date();
+
+  function hit() {
+    var r = confirm("你是傻逼吗？");
+    if(!r){
+      hit();
     }
-    if (tmp) {
-        arr.push(tmp);
-    }
-    return arr;
-}
-var obj = findNum(str);
-console.log(obj);
-console.log("哈哈哈");
-console.log("呵呵呵");
+  }
+  var win = window.open("","","width=200,height=100,left=500,top=300");
+  win.name = "哈哈哈"
+  function begin() {
+    t = setInterval("add()", 500);
+  }
+  function add() {
+    ipt = document.getElementById("num");
+    ipt.setAttribute("value", new Date());
+  }
+  function end() {
+    window.clearInterval(t);
+  }
