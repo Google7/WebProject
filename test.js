@@ -24,11 +24,9 @@ function hit() {
         hit();
     }
 }
-var win = window.open("", "", "width=200,height=100,left=500,top=300");
-win.name = "哈哈哈";
 
 function begin() {
-    t = setInterval("add()", 500);
+    t = setInterval("add()", 100);
 }
 
 function add() {
@@ -37,5 +35,30 @@ function add() {
 }
 
 function end() {
-    window.clearInterval(t);
+    clearInterval(t);
 }
+
+function ddd() {
+    document.getElementById("span").innerHTML = eee();
+}
+
+var eee = (function () {
+    var count = 0;
+    return function () {
+        return count += 1;
+    }
+})();
+
+function fun1() {
+    var f = 1;
+
+    function fun2() {
+        //alert(f);
+        f += 1;
+    }
+    return fun2;
+}
+
+var res = fun1();
+res();
+

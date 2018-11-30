@@ -3,13 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>Test</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="bootstrap-4.0.0/dist/css/bootstrap.min.css"
-    />
+    <link rel="stylesheet" type="text/css" href="bootstrap-4.0.0/dist/css/bootstrap.min.css"/>
     <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="test.js"></script>
+    
     <style type="text/css">
       .ss {
         color: red;
@@ -22,6 +19,9 @@
       <button id="ha" onclick="begin()">开始</button>
       <button id="ho" onclick="end()" class="ss">结束</button><br />
       <button onclick="hit()">点我</button>
+      <button onclick="res()">加一</button><br />
+      <button id="lala">啦啦</button>
+      <span id="span">0</span><br />
       <input id="num" type="text" style="width:500px" />
       <a href="https://www.baidu.com/">666</a>
     </div>
@@ -39,5 +39,11 @@
       </table>
     </div>
     <button id="demo" onclick="demo()">哈哈</button>
+    <script>
+      document.getElementById("lala").addEventListener("click",haha);
+      function haha(){
+      document.getElementById("span").innerHTML = new Date(); 
+}
+      </script>
   </body>
 </html>
