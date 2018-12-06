@@ -1,14 +1,4 @@
-﻿window.onload = function () {
-    for (let i = 0; i < 100; i++) {
-        var span = document.createElement("span");
-        span.innerHTML = "O(∩_∩)O哈哈~";
-        var p = document.createElement("p");
-        var list = document.getElementById("list");
-        list.append(span);
-        list.append(p);
-    }
-};
-var mywin = window.open("", "", "width=200,height=100,left=500,top=300");
+﻿var mywin = window.open("", "", "width=200,height=100,left=500,top=300");
 mywin.document.write("哈哈哈");
 mywin.focus();
 mywin.close();
@@ -32,6 +22,7 @@ function begin() {
 function add() {
     ipt = document.getElementById("num");
     ipt.setAttribute("value", new Date());
+    
 }
 
 function end() {
@@ -42,23 +33,36 @@ function ddd() {
     document.getElementById("span").innerHTML = eee();
 }
 
-var eee = (function () {
-    var count = 0;
-    return function () {
-        return count += 1;
-    }
-})();
 
 function fun1() {
     var f = 1;
 
     function fun2() {
-        //alert(f);
+        document.getElementById("span").innerHTML = f;
         f += 1;
     }
     return fun2;
 }
 
 var res = fun1();
-res();
 
+var bibi = function () {
+    var count = 0;
+    return function () {
+        document.getElementById("span").innerHTML = count;
+        count += 1;
+    }
+}();
+
+
+function haha() {
+    document.getElementById("span").innerHTML = new Date();
+}
+
+function zzz() {
+    var t1 = document.createElement("span");
+    var c1 = document.createTextNode("test1");
+    t1.appendChild(c1);
+    var qwe = document.getElementById("div");
+    qwe.insertBefore(t1,qwe.childNodes[4]);
+}

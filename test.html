@@ -3,47 +3,134 @@
   <head>
     <meta charset="UTF-8" />
     <title>Test</title>
-    <link rel="stylesheet" type="text/css" href="bootstrap-4.0.0/dist/css/bootstrap.min.css"/>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="bootstrap-4.0.0/dist/css/bootstrap.min.css"
+    />
     <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="test.js"></script>
-    
+    <script></script>
     <style type="text/css">
       .ss {
         color: red;
+        display: none;
+      }
+
+      #aa {
+        display: none;
+      }
+
+      #div1 {
+        position: relative;
+      }
+      .color {
+        color: green;
       }
     </style>
   </head>
 
   <body>
     <div id="div">
-      <button id="ha" onclick="begin()">开始</button>
-      <button id="ho" onclick="end()" class="ss">结束</button><br />
-      <button onclick="hit()">点我</button>
-      <button onclick="res()">加一</button><br />
-      <button id="lala">啦啦</button>
-      <span id="span">0</span><br />
-      <input id="num" type="text" style="width:500px" />
-      <a href="https://www.baidu.com/">666</a>
+      <div id="div1">
+        <button id="ha">开始</button>
+        <button id="ho" onclick="end()" class="ss">结束</button><br />
+        <button id="zzz">点我</button> <button onclick="bibi()">加一</button
+        ><br />
+        <button id="lala">啦啦</button> <span id="span">0</span><br />
+        <input id="num" type="text" style="width:500px" />
+        <a href="https://www.baidu.com/">666</a>
+      </div>
+      <div id="div2">
+        <span id="list">嘿嘿嘿</span><br />
+        <span id="aa">啊啊啊</span> <span id="bb">哈哈哈</span>
+        <input id="ipt" type="text" value="666" />
+      </div>
+      <div id="div3">
+        <table id="table" border="1px solid">
+          <tr id="tr">
+            <td id="td" name="myname">Jackie</td>
+            <td id="jqc" name="jian">jainqichen</td>
+          </tr>
+        </table>
+
+        <button id="demo" class="color" onclick="demo()">呵呵</button>
+        <button id="tmp" class="color">哈哈</button>
+      </div>
+      <div id="div4">
+        <canvas
+          id="can"
+          width="500"
+          height="300"
+          style="border:1px solid #c3c3c3;"
+        ></canvas>
+      </div>
     </div>
-    <div>
-      <span id="list">嘿嘿嘿</span>
-      <h4 id="aa">啊啊啊</h4>
-      <input id="ipt" type="text" value="啥啥啥" />
-    </div>
-    <div id="div2">
-      <table id="table">
-        <tr id="tr">
-          <td id="td" name="myname">Jackie</td>
-          <td id="jqc" name="jian">jainqichen</td>
-        </tr>
-      </table>
-    </div>
-    <button id="demo" onclick="demo()">哈哈</button>
+    <script type="text/javascript" src="test.js"></script>
     <script>
-      document.getElementById("lala").addEventListener("click",haha);
-      function haha(){
-      document.getElementById("span").innerHTML = new Date(); 
-}
-      </script>
+      $(document).ready(function() {
+        $("button").dblclick(function() {
+          $(this).hide();
+        });
+        $("#ha").css("color", "blue");
+
+        $("#demo").click(function() {
+          $("#ho").fadeIn(3000);
+          $("#ho").fadeOut(3000);
+          $("#aa").slideDown(3000);
+          $("#bb").slideUp(3000);
+          $("#div1").animate({
+            left: "250px"
+          });
+        });
+        $("#tmp").click(function() {
+          $("#aa").stop(true, true);
+          $("#tmp").hide(3000, function() {
+            alert(666);
+          });
+        });
+
+        $("#list").html("<h5>Hello!</h5>");
+        $("#ha").click(function() {
+          var t = setInterval(show, 100);
+        });
+        function show() {
+          $("#num").attr("value", new Date());
+        }
+        $("#zzz").click(add);
+        function add() {
+          var sp = $("<span></span>").text("呵呵");
+          $("#div").append(sp);
+          $("td").remove();
+          $("#demo,#tmp").toggleClass("color");
+          $.ajax({
+            url: "test.xml",
+            success: function(result) {
+              alert(result);
+            }
+          });
+        }
+
+        var ctx = $("#can")[0].getContext("2d");
+        ctx.fillStyle = "#FF0000";
+        ctx.fillRect(20, 60, 40, 80);
+
+        var x = 100,
+          y = 50;
+        for (let i = 0; i < 10; i++) {
+          ctx.moveTo(x, y);
+          ctx.lineTo(x + 50, y + 50);
+          ctx.stroke();
+          x = x + 20;
+        }
+
+        ctx.beginPath();
+        ctx.arc(150, 150, 30, 0, 2 * Math.PI);
+        ctx.stroke();
+
+        ctx.font = "30px Arial";
+        ctx.strokeText("Hello World !", 200, 150);
+      });
+    </script>
   </body>
 </html>

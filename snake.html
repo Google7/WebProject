@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>小蛇快跑</title>
+		<style type="text/css">
+			div {
+				text-align: center;
+			}
+			
+			canvas {
+				border: 1px solid blue;
+			}
+		</style>
+		<script type="text/javascript">
+			var ix = 50
+			var iy = 50
+			var ir = 10
+			var s = 100
+			var star = false
+			var dir
+			var points
+			var p
+			var can
+			var cx
+			var tmpx
+			var tmpy
+			var tx
+			var ty
+
+			function point() {
+				var x
+				var y
+			}
+
+			function play() {
+				star = true
+				init()
+				draw()
+			}
+
+			function over() {
+				star = false
+			}
+
+			window.onload = function() {
+				can = document.getElementById("mycancas")
+				if(can) {
+					init()
+					draw
+				} else {
+					alert("浏览器不支持")
+				}
+			}
+
+			function init() {
+				points = new Array()
+				dir = right
+
+				for(i = 0; i < 100; i++) {
+					p = new point()
+					p.x = ix
+					p.y = iy
+					points.push(p)
+				}
+			}
+
+			function draw() {
+				dir()
+				count()
+				clear()
+
+				cx = can.getContext("2d")
+				cx.fillStyle = "#00FFFF"
+
+				for(i = 0; i < points.length; i++) {
+					cx.beginPath()
+					cx.arc(points[i].x, points[i].y, ir, 0, Math.PI * 2, true)
+					cx.closePath()
+					cx.fill()
+				}
+				if(star) {
+					setTimeout(function() {
+						draw()
+					}, s)
+				}
+			}
+
+			function clear() {
+				cx = can.getContext("2d")
+				cx.clearRect(0, 0, can.width, can.height)
+			}
+
+			function count() {
+				for(i = 0; i < points.length; i++) {
+					if(i == 0) {
+
+						tmpx = points[i].x
+						tmpy = points[i].y
+
+						points[i].x = ix
+						points[i].y = iy
+					} else {
+						tx = points[i].x
+						ty = points[i].y
+
+						points[i].x = tmpx
+						points[i].y = tmpy
+
+						tmpx = tx
+						tmpy = ty
+					}
+				}
+			}
+
+			window.onkeydown = function() {
+				switch(event.keyCode) {
+					case 37:
+						dir = left
+						break;
+					case 38:
+						dir = up
+						break;
+					case 39:
+						dir = right
+						break;
+					case 40:
+						dir = down
+						break;
+				}
+			}
+
+			function left() {
+				ix -= ir * 2
+			}
+
+			function right() {
+				ix += ir * 2
+			}
+
+			function up() {
+				iy -= ir * 2
+			}
+
+			function down() {
+				iy += ir * 2
+			}
+		</script>
+	</head>
+
+	<body>
+		<div>
+			<canvas id="mycancas" width="1200" height="600"></canvas>
+		</div>
+		<div>
+			<input type="button" value="开始" onclick="play()">
+			<input type="button" value="结束" onclick="over()">
+		</div>
+
+	</body>
+
+</html>

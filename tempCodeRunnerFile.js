@@ -125,3 +125,30 @@ var asd = new abc("jian","qichen");
 abc.prototype.age = 23;
 console.log(asd.age);
 console.log(abc.prototype);
+
+var bibi = function () {
+    var count = 1;
+    return function () {
+        console.log(count);
+        return count += 1;
+    }
+}();
+bibi();
+bibi();
+bibi();
+
+function call1(callback){
+    console.log("aaa");
+    var a = 3;
+    var b = 4;
+    return callback(a,b);
+}
+function call2(a,b){
+    console.log("bbb");
+    return a * b;
+}
+
+var nn = call1(call2);
+console.log(nn);
+
+console.log(eval("5*5"));
