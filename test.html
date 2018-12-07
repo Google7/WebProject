@@ -27,6 +27,9 @@
       .color {
         color: green;
       }
+      div {
+        border: 1px solid red;
+      }
     </style>
   </head>
 
@@ -64,6 +67,9 @@
           height="300"
           style="border:1px solid #c3c3c3;"
         ></canvas>
+      </div>
+      <div id="div5">
+        
       </div>
     </div>
     <script type="text/javascript" src="test.js"></script>
@@ -112,25 +118,34 @@
         }
 
         var ctx = $("#can")[0].getContext("2d");
-        ctx.fillStyle = "#FF0000";
+        ctx.fillStyle = "red";
         ctx.fillRect(20, 60, 40, 80);
+      
 
         var x = 100,
           y = 50;
         for (let i = 0; i < 10; i++) {
           ctx.moveTo(x, y);
           ctx.lineTo(x + 50, y + 50);
+          ctx.strokeStyle = "green";
           ctx.stroke();
           x = x + 20;
         }
-
+        
         ctx.beginPath();
         ctx.arc(150, 150, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "blue";
         ctx.stroke();
+        ctx.fill();
 
         ctx.font = "30px Arial";
         ctx.strokeText("Hello World !", 200, 150);
+        
+        function allowDrop(ev){
+          
+        }
       });
+
     </script>
   </body>
 </html>

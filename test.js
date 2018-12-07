@@ -54,7 +54,6 @@ var bibi = function () {
     }
 }();
 
-
 function haha() {
     document.getElementById("span").innerHTML = new Date();
 }

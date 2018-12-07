@@ -1,3 +1,4 @@
+<reference path="/typings/globals/node/index.d.ts"/>
 function demo(c, d) {
     console.log(this.a + this.b + c + d);
 }
