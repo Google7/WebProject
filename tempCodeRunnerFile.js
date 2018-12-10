@@ -1,4 +1,3 @@
-<reference path="/typings/globals/node/index.d.ts"/>
 function demo(c, d) {
     console.log(this.a + this.b + c + d);
 }
@@ -151,5 +150,3 @@ function call2(a,b){
 
 var nn = call1(call2);
 console.log(nn);
-
-console.log(eval("5*5"));
