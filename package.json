@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Google7/Test/issues"
   },
-  "homepage": "https://github.com/Google7/Test#readme"
+  "homepage": "https://github.com/Google7/Test#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
 }
