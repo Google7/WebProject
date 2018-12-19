@@ -196,3 +196,5 @@ var animal = {
         }
     ]
 }
+
+console.log(666);
