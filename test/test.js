@@ -1,67 +1,198 @@
-﻿var mywin = window.open("", "", "width=200,height=100,left=500,top=300");
-mywin.document.write("哈哈哈");
-mywin.focus();
-mywin.close();
+﻿function demo(c, d) {
+    console.log(this.a + this.b + c + d);
+}
+var obj1 = {
+    a: 3,
+    b: 4
+}
+demo.call(obj1, 1, 2);
+demo.apply(obj1, [5, 6]);
 
-var ipt;
-var n = 0;
-var t;
-var dt = new Date();
-
-function hit() {
-    var r = confirm("你是傻逼吗？");
-    if (!r) {
-        hit();
+var obj2 = {
+    user: "jian",
+    fun: function () {
+        console.log(this.user, this.fun);
     }
 }
+obj2.fun();
 
-function begin() {
-    t = setInterval("add()", 100);
+function aa() {
+    this.user = "qichen";
+}
+var a = new aa();
+console.log(a.user);
+
+var fun = function () {
+    console.log(fun.caller);
 }
 
-function add() {
-    ipt = document.getElementById("num");
-    ipt.setAttribute("value", new Date());
-    
+function bb() {
+    fun();
+}
+bb();
+
+var cc = function (x, y) {
+    console.log(arguments, arguments.length, arguments.callee.length, arguments.callee);
+    console.log(x * y);
+    return x + y;
+}
+cc(2, 3, 4);
+var dd = function (name, age) {
+    this.name = name,
+        this.age = age
+}
+var obj3 = new dd("jian", 23);
+dd.prototype.ss = 123;
+console.log(obj3.ss, obj3.name);
+
+function ee(name) {
+    this.name = name,
+        this.age = 23
+}
+var obj4 = new ee("jian");
+console.log(obj4.constructor.toString(), obj4.age);
+var dd = '{ "employees" : [{ "firstName":"John" , "lastName":"Doe" },' +
+    '{ "firstName":"Anna" , "lastName":"Smith" },' +
+    '{ "firstName":"Peter" , "lastName":"Jones" } ]}';
+
+var obj = JSON.parse(dd);
+console.log(dd, obj.employees[0].firstName);
+var a = {
+    x: 1
+};
+
+function aaa(a) {
+    a.x++;
+    console.log(a.x);
+}
+aaa(a);
+console.log(a.x);
+
+function test() {
+    return this.firstName + this.lastName;
+}
+var demo = {
+    firstName: "jian",
+    lastName: "qichen",
+    age: 23,
+    fun: test
+}
+console.log(demo.fun());
+
+function test2(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
 }
 
-function end() {
-    clearInterval(t);
-}
-
-function ddd() {
-    document.getElementById("span").innerHTML = eee();
-}
-
+var xx = new test2("aaa", "bbb");
+console.log(xx);
 
 function fun1() {
-    var f = 1;
+    var n = 1;
+    add = function () {
+        n += 1;
+    }
 
     function fun2() {
-        document.getElementById("span").innerHTML = f;
-        f += 1;
+        console.log(n);
     }
     return fun2;
 }
 
 var res = fun1();
+res();
+add();
+res();
+
+var object = {
+    name: "My Object",
+
+    getNameFunc: function () {
+        var that = this;
+        return function () {
+            return that.name;
+        };
+    }
+};
+
+console.log(object.getNameFunc()());
+
+function abc(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+}
+var asd = new abc("jian", "qichen");
+abc.prototype.age = 23;
+console.log(asd.age);
+console.log(abc.prototype);
 
 var bibi = function () {
-    var count = 0;
+    var count = 1;
     return function () {
-        document.getElementById("span").innerHTML = count;
-        count += 1;
+        console.log(count);
+        return count += 1;
     }
 }();
+bibi();
+bibi();
+bibi();
 
-function haha() {
-    document.getElementById("span").innerHTML = new Date();
+function call1(callback) {
+    console.log("aaa");
+    var a = 3;
+    var b = 4;
+    return callback(a, b);
 }
 
-function zzz() {
-    var t1 = document.createElement("span");
-    var c1 = document.createTextNode("test1");
-    t1.appendChild(c1);
-    var qwe = document.getElementById("div");
-    qwe.insertBefore(t1,qwe.childNodes[4]);
+function call2(a, b) {
+    console.log("bbb");
+    return a * b;
+}
+
+var nn = call1(call2);
+console.log(nn);
+
+var jsobj = {
+    name: "jian",
+    age: 23
+}
+
+var jsonstr = '{"emp":[' +
+    '{"name":"dog","age":15},' +
+    '{"name":"cat","age":12},' +
+    '{"name":"mouse","age":10}]}';
+console.log(jsobj);
+console.log(JSON.parse(jsonstr));
+
+for (x in jsobj) {
+    console.log(jsobj[x]);
+}
+
+var animal = {
+    "dog": [{
+            "name": "哈士奇",
+            "age": 12
+        },
+        {
+            "name": "田园犬",
+            "age": 15
+        },
+        {
+            "name": "柴犬",
+            "age": 16
+        }
+    ],
+    "cat": [{
+            "name": "汤姆猫",
+            "age": 13
+        },
+        {
+            "name": "加菲猫",
+            "age": 17
+        },
+        {
+            "name": "野猫",
+            "age": 18
+        }
+    ]
 }
