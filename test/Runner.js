@@ -1,29 +1,29 @@
-function obj(aa) {
+function myfun(aa) {
     this.aa = aa;
-    this.fun = function () {}
+    this.fun = function() {}
     var obj = new Object();
     obj.dd = "dd"
     return obj;
 }
-obj.bb = "bb";
-obj.prototype.cc = "cc";
-var o = new obj("aa");
+myfun.bb = "bb";
+myfun.prototype.cc = "cc";
+var o = new myfun("aa");
 console.log(o.dd);
 
 function circle(r) {
     this.r = r;
 }
 circle.pi = 3.14;
-circle.prototype.area = function () {
+circle.prototype.area = function() {
     return circle.pi;
 }
 var c = new circle(10);
 console.log(c.area());
 
-var circle2 = function () {
+var circle2 = function() {
     var obj = new Object();
     obj.pi = 3.14;
-    obj.area = function (r) {
+    obj.area = function(r) {
         return this.pi * r;
     }
     return obj;
@@ -33,14 +33,14 @@ console.log(c.area(2));
 
 var circle3 = new Object();
 circle3.pi = 3.14;
-circle3.area = function (r) {
+circle3.area = function(r) {
     return this.pi * r;
 }
 console.log(circle3.area(3));
 
 var circle4 = {
     "pi": 3.14,
-    "area": function (r) {
+    "area": function(r) {
         return this.pi * r;
     }
 }
@@ -49,54 +49,59 @@ console.log(circle4.area(4));
 var circle5 = new Function("this.pi = 3.14,this.area = function(r){return this.pi * r}");
 console.log(new circle5().area(5));
 
-var dom = function () {}
-dom.show = function () {
+var dom = function() {}
+dom.show = function() {
     console.log("show");
 }
-dom.prototype.display = function () {
+dom.show();
+dom.prototype.display = function() {
     console.log("protype");
 }
-dom.show();
 var d = new dom();
 d.display();
 
-var dom2 = function () {
+var dom2 = function() {
     var obj = new Object();
     obj.name = "jian";
     this.sex = "boy";
-    this.success = function () {
+    this.success = function() {
         console.log("success");
     }
-    obj.fun = function () {
+    obj.fun = function() {
         console.log(this.name);
     }
-    return obj;
+
 }
 var d = new dom2();
-console.log(d.name);
+d.success();
 
 var html = {
     name: "object",
-    success: function () {
-        this.say = function () {
+    success: function() {
+        this.say = function() {
             console.log("Hello");
         }
         console.log("World");
     }
 }
-html.success.prototype.show = function () {
+html.success.prototype.show = function() {
     console.log("show");
 }
+var ss = new html.success();
+console.log(html.name);
+ss.say();
+html.success();
+ss.show();
 
 var html2 = new Object();
 html2.name = "object2";
-html2.success = function () {
-    this.say = function () {
+html2.success = function() {
+    this.say = function() {
         console.log("Hello2")
     }
     console.log("World2");
 }
-html2.success.prototype.show = function () {
+html2.success.prototype.show = function() {
     console.log("show2")
 }
 
@@ -106,40 +111,13 @@ ss.say();
 html2.success();
 ss.show();
 
-var data = {
-    table: [],
-    tree: {}
-};
-
-(function (dm) {
-    for (var i = 0; i < dm.table.rows; i++) {
-        var row = dm.table.rows[i];
-        for (var j = 0; j < row.cells; i++) {
-            drawCell(i, j);
-        }
-    }
-})(data);
-
-var cacheBox = (function () {
-    var cache = {};
-    count = [];
-    return {
-        attr: function (id) {
-            if (id in cache) {
-                return cache[id];
-            }
-            var fdb = new uikit.webcrtl
-        }
-    }
-})
-
-var persion = function () {
+var persion = function() {
     var name = "default";
     return {
-        getName: function () {
+        getName: function() {
             return name;
         },
-        setName: function (newName) {
+        setName: function(newName) {
             name = newName;
         }
     }
@@ -151,10 +129,10 @@ console.log(persion.getName());
 function persion2() {
     var name = "default2";
     return {
-        getName: function () {
+        getName: function() {
             return name;
         },
-        setName: function (newName) {
+        setName: function(newName) {
             return name = newName;
         }
     }
@@ -162,12 +140,47 @@ function persion2() {
 var p = new persion2();
 p.setName("qichen");
 console.log(p.getName());
-var jian = function () {}
+var jian = function() {}
 jian.prototype = new persion2();
-jian.prototype.say = function () {
+jian.prototype.say = function() {
     console.log("jianqichen");
 }
 var j = new jian();
-j.setName("jian");
+j.setName("JQC");
 j.say();
 console.log(j.getName());
+
+var close = function() {
+    var n = 0;
+    return function() {
+        console.log(n);
+        n += 1;
+    }
+}();
+close();
+close();
+close();
+
+var json = {
+    "name": "jian",
+    "age": 23,
+    "sex": "boy",
+    "phone": "10086"
+}
+
+for (var i in json) {
+    console.log(i + ":" + json[i])
+}
+
+function funA() {
+    console.log("funA")
+    var x = 2;
+    var y = 3;
+    return funB(x, y);
+}
+
+function funB(x, y) {
+    console.log("funB");
+    return x * y;
+}
+console.log(funA(funB));

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>AngularJS</title>
+    <script src="../config/angular.min.js"></script>
+    <style>
+        li {
+            float: left;
+            list-style: none;
+            padding-left: 10px;
+        }
+        
+        h3 {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div" ng-app="myApp" ng-controller="myCtrl">
+        <h1>Hello</h1>
+        <input ng-model="firstName" />
+        <p />
+        <input ng-model="lastName" />
+        <p>{{fullName() | uppercase}}</p>
+        <h2>{{Persion.age}}</h2>
+        <ul>
+            <li ng-repeat="x in arr">
+                {{x}}
+            </li>
+        </ul>
+        <h3>URL{{myURL}}</h3>
+        <p>{{Hello}}</p>
+        <p>{{timeout}}</p>
+        <p>{{interval}}</p>
+        <p>{{result}}</p>
+        <li ng-repeat="x in counts">{{x | myFilter}}</li>
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.service("myService", function() {
+            this.format = function(x) {
+                return x.toString(16);
+            }
+        });
+        app.filter("myFilter", ['myService', function(param) {
+            return function(x) {
+                return param.format(x);
+            }
+        }])
+        app.controller("myCtrl", function($scope, $location, $http, $timeout, $interval, myService) {
+            $scope.Persion = {
+                name: "jian",
+                age: 23
+            }
+            $scope.arr = [1, 2, 3, 4, 5];
+            $scope.firstName = "jian";
+            $scope.lastName = "qichen";
+            $scope.fullName = function() {
+                return this.firstName + this.lastName;
+            }
+            $scope.myURL = $location.absUrl();
+            $http.get("test.txt").then(function(response) {
+                $scope.Hello = response.data;
+            })
+            $scope.timeout = "hello";
+            $timeout(function() {
+                $scope.timeout = "world"
+            }, 3000)
+            $scope.interval = new Date();
+            $interval(function() {
+                $scope.interval = new Date();
+            }, 1000)
+            $scope.result = myService.format(250);
+            $scope.counts = [111, 222, 333];
+        })
+    </script>
+
+</body>
+
+</html>

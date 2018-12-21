@@ -1,15 +1,13 @@
-class person {
-    constructor() {
-        
-    }
-
-    /**
-     * print
-     */
-    public print() {
-        console.log('this is a person')
-    }
+interface Person {
+    firstName: string;
+    lastName: string;
 }
 
-let p = new person();
-p.print();
+function greeter(person: Person) {
+    return "Hello, " + person.firstName + " " + person.lastName;
+}
+
+var user = { firstName: "Jane", lastName: "User" };
+
+document.body.innerHTML = greeter(user);
+

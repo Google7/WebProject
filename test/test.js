@@ -10,7 +10,7 @@ demo.apply(obj1, [5, 6]);
 
 var obj2 = {
     user: "jian",
-    fun: function () {
+    fun: function() {
         console.log(this.user, this.fun);
     }
 }
@@ -22,7 +22,7 @@ function aa() {
 var a = new aa();
 console.log(a.user);
 
-var fun = function () {
+var fun = function() {
     console.log(fun.caller);
 }
 
@@ -31,13 +31,13 @@ function bb() {
 }
 bb();
 
-var cc = function (x, y) {
+var cc = function(x, y) {
     console.log(arguments, arguments.length, arguments.callee.length, arguments.callee);
     console.log(x * y);
     return x + y;
 }
 cc(2, 3, 4);
-var dd = function (name, age) {
+var dd = function(name, age) {
     this.name = name,
         this.age = age
 }
@@ -89,7 +89,7 @@ console.log(xx);
 
 function fun1() {
     var n = 1;
-    add = function () {
+    add = function() {
         n += 1;
     }
 
@@ -107,9 +107,9 @@ res();
 var object = {
     name: "My Object",
 
-    getNameFunc: function () {
+    getNameFunc: function() {
         var that = this;
-        return function () {
+        return function() {
             return that.name;
         };
     }
@@ -126,9 +126,9 @@ abc.prototype.age = 23;
 console.log(asd.age);
 console.log(abc.prototype);
 
-var bibi = function () {
+var bibi = function() {
     var count = 1;
-    return function () {
+    return function() {
         console.log(count);
         return count += 1;
     }

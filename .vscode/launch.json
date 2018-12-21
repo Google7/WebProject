@@ -20,8 +20,15 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "启动程序",
+            "name": "Star",
             "program": "${file}"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Google",
+            "url": "http://localhost:8086",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }
