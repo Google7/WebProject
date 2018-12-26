@@ -4,5 +4,10 @@
   "search.exclude": {
     "**/css": true,
     "**/js": true
-  }
+  },
+  "editor.autoClosingBrackets": "always",
+  "editor.autoClosingQuotes": "always",
+  "editor.mouseWheelZoom": true,
+  "editor.tabCompletion": "on",
+  "merge-conflict.autoNavigateNextConflict.enabled": true
 }

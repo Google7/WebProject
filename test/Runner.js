@@ -184,3 +184,15 @@ function funB(x, y) {
     return x * y;
 }
 console.log(funA(funB));
+
+function point() {
+    var x;
+
+}
+var p = new point();
+p.x = 10;
+p.y = 20;
+var arr = new Array();
+arr.push(p);
+console.log(arr);
+console.log(arr[0].x)

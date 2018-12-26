@@ -136,10 +136,24 @@
                 top: 200px;
             }
         }
+        
+        .demo {
+            color: blue;
+            position: relative;
+            animation: demo 20s;
+        }
+        
+        @keyframes demo {
+            from {
+                left: 0px;
+            }
+            to {
+                left: 1600px;
+            }
+        }
     </style>
     <script>
         var xmlhttp;
-
         function loadXMLDoc(url, fun) {
             if (window.XMLHttpRequest) {
                 xmlhttp = new XMLHttpRequest();
@@ -237,6 +251,15 @@
                 }
             };
             $("#num").attr("value", jsonobj.pet.cat);
+            $("#ff").click(function() {
+                var str = $("#pp").val();
+                var span = $("<span></span>").html(str);
+                $("#abc").before(span);
+                span.attr("class","demo");
+                setTimeout(function(){
+                    span.hide();
+                },20000);
+            })
         });
     </script>
 </head>
@@ -245,6 +268,9 @@
     <div id="div">
         <div id="div1" class="row">
             <div id="div11" class="col-md-5">
+                <div id="abc"></div>
+                <input type="text" id="pp">
+                <button id="ff">发送</button><br />
                 <button id="ha">开始</button>
                 <button id="ho" onclick="end()" class="ss">结束</button><br />
                 <button id="zzz" onclick="callback()">点我</button> <button onclick="bibi()">加一</button><br />
