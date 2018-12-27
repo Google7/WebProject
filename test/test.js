@@ -16,20 +16,20 @@ var obj2 = {
 }
 obj2.fun();
 
-function aa() {
+function ab() {
     this.user = "qichen";
 }
-var a = new aa();
+var a = new ab();
 console.log(a.user);
 
 var fun = function() {
     console.log(fun.caller);
 }
 
-function bb() {
+function ba() {
     fun();
 }
-bb();
+ba();
 
 var cc = function(x, y) {
     console.log(arguments, arguments.length, arguments.callee.length, arguments.callee);
@@ -55,8 +55,8 @@ var dd = '{ "employees" : [{ "firstName":"John" , "lastName":"Doe" },' +
     '{ "firstName":"Anna" , "lastName":"Smith" },' +
     '{ "firstName":"Peter" , "lastName":"Jones" } ]}';
 
-var obj = JSON.parse(dd);
-console.log(dd, obj.employees[0].firstName);
+var jsonobj = JSON.parse(dd);
+console.log(dd, jsonobj.employees[0].firstName);
 var a = {
     x: 1
 };
@@ -168,7 +168,7 @@ for (x in jsobj) {
     console.log(jsobj[x]);
 }
 
-var animal = {
+var animals = {
     "dog": [{
             "name": "哈士奇",
             "age": 12
