@@ -9,21 +9,21 @@ interface IPersion {
   firstName: string;
   lastName: string;
 }
-function greeter(param: IPersion) {
+function greet(param: IPersion) {
   return "Hello" + " " + param.firstName + param.lastName;
 }
 let user = new Student("jian", "qichen");
-console.log(greeter(user));
+console.log(greet(user));
 
 type C = { name: string; age: number };
-function ff({ name, age }: C): void {
+function info({ name, age }: C): void {
   console.log(name + "*" + age);
 }
 var msg: any = {
   name: "jian",
   age: 23
 };
-ff(msg);
+info(msg);
 
 interface ILabelValue {
   label: string;
@@ -187,25 +187,12 @@ class Button extends Control {
   select() {}
 }
 
-class Greeter {
-  greeting: string;
-  constructor(msg: string) {
-    this.greeting = msg;
-  }
-  greet(param: String) {
-    console.log(param + " " + this.greeting);
-  }
-}
-
-let greet = new Greeter("World !");
-greet.greet("Hello");
-
 class Animal {
   private name: string;
   constructor(name: string) {
     this.name = name;
   }
-  move(distance: number) {
+  move(distance: number): void {
     console.log(`${this.name} moved ${distance}m.`);
   }
 }
@@ -260,3 +247,99 @@ class Message {
   }
 }
 new Message("jian", 23);
+
+class Grid {
+  constructor(public scale: number) {}
+  static origin = { x: 0, y: 0 };
+  calculateDistance(point: { x: number; y: number }) {
+    let xDist = point.x - Grid.origin.x;
+    let yDist = point.y - Grid.origin.y;
+    return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale;
+  }
+}
+
+let grid = new Grid(5);
+console.log(grid.calculateDistance({ x: 10, y: 20 }));
+
+abstract class Department {
+  constructor(public name: string) {}
+  printName() {
+    console.log(this.name);
+  }
+  abstract printMeeting(): void;
+}
+
+class AccountDeparment extends Department {
+  constructor() {
+    super("AccountDeparment");
+  }
+  printMeeting() {
+    console.log("printMeeting");
+  }
+}
+
+let account = new AccountDeparment();
+account.printMeeting();
+account.printName();
+
+class Greeter {
+  static staticGreeting = "Hello there";
+  greeting: string;
+  greet() {
+    if (this.greeting) {
+      return "Hello" + " " + this.greeting;
+    } else {
+      return Greeter.staticGreeting;
+    }
+  }
+}
+
+let greeter1: Greeter = new Greeter();
+console.log(greeter1.greet());
+let greeterMaker: typeof Greeter = Greeter;
+greeterMaker.staticGreeting = "Hey there";
+let greeter2: Greeter = new greeterMaker();
+console.log(greeter2.greet());
+
+class Point {
+  x: number;
+  y: number;
+}
+
+interface IPoint extends Point {
+  z: number;
+}
+
+let point: IPoint = { x: 1, y: 2, z: 3 };
+console.log(point);
+
+interface ICard {
+  suit: string;
+  card: number;
+}
+interface IDeck {
+  suits: string[];
+  cards: number[];
+  createCard(this: IDeck): () => ICard;
+}
+
+let deck: IDeck = {
+  suits: ["one", "two", "three", "four", "five"],
+  cards: [1, 2, 3, 4, 5],
+  createCard: function(this: IDeck) {
+    return () => {
+      let pickedSuit = 2;
+      let pickedCard = 3;
+      return {
+        suit: this.suits[pickedSuit],
+        card: this.cards[pickedCard]
+      };
+    };
+  }
+};
+
+let cardPicker = deck.createCard();
+let pickedCard = cardPicker();
+console.log(pickedCard.suit + " " + pickedCard.card);
+
+

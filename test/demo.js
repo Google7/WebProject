@@ -19,12 +19,12 @@ var Student = /** @class */ (function () {
     }
     return Student;
 }());
-function greeter(param) {
+function greet(param) {
     return "Hello" + " " + param.firstName + param.lastName;
 }
 var user = new Student("jian", "qichen");
-console.log(greeter(user));
-function ff(_a) {
+console.log(greet(user));
+function info(_a) {
     var name = _a.name, age = _a.age;
     console.log(name + "*" + age);
 }
@@ -32,7 +32,7 @@ var msg = {
     name: "jian",
     age: 23
 };
-ff(msg);
+info(msg);
 function printLabel(labelObj) {
     console.log(labelObj.label + "*" + labelObj.size);
 }
@@ -131,17 +131,6 @@ var Button = /** @class */ (function (_super) {
     Button.prototype.select = function () { };
     return Button;
 }(Control));
-var Greeter = /** @class */ (function () {
-    function Greeter(msg) {
-        this.greeting = msg;
-    }
-    Greeter.prototype.greet = function (param) {
-        console.log(param + " " + this.greeting);
-    };
-    return Greeter;
-}());
-var greet = new Greeter("World !");
-greet.greet("Hello");
 var Animal = /** @class */ (function () {
     function Animal(name) {
         this.name = name;
@@ -197,3 +186,84 @@ var Message = /** @class */ (function () {
     return Message;
 }());
 new Message("jian", 23);
+var Grid = /** @class */ (function () {
+    function Grid(scale) {
+        this.scale = scale;
+    }
+    Grid.prototype.calculateDistance = function (point) {
+        var xDist = point.x - Grid.origin.x;
+        var yDist = point.y - Grid.origin.y;
+        return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale;
+    };
+    Grid.origin = { x: 0, y: 0 };
+    return Grid;
+}());
+var grid = new Grid(5);
+console.log(grid.calculateDistance({ x: 10, y: 20 }));
+var Department = /** @class */ (function () {
+    function Department(name) {
+        this.name = name;
+    }
+    Department.prototype.printName = function () {
+        console.log(this.name);
+    };
+    return Department;
+}());
+var AccountDeparment = /** @class */ (function (_super) {
+    __extends(AccountDeparment, _super);
+    function AccountDeparment() {
+        return _super.call(this, "AccountDeparment") || this;
+    }
+    AccountDeparment.prototype.printMeeting = function () {
+        console.log("printMeeting");
+    };
+    return AccountDeparment;
+}(Department));
+var account = new AccountDeparment();
+account.printMeeting();
+account.printName();
+var Greeter = /** @class */ (function () {
+    function Greeter() {
+    }
+    Greeter.prototype.greet = function () {
+        if (this.greeting) {
+            return "Hello" + " " + this.greeting;
+        }
+        else {
+            return Greeter.staticGreeting;
+        }
+    };
+    Greeter.staticGreeting = "Hello there";
+    return Greeter;
+}());
+var greeter1 = new Greeter();
+console.log(greeter1.greet());
+var greeterMaker = Greeter;
+greeterMaker.staticGreeting = "Hey there";
+var greeter2 = new greeterMaker();
+console.log(greeter2.greet());
+var Point = /** @class */ (function () {
+    function Point() {
+    }
+    return Point;
+}());
+var point = { x: 1, y: 2, z: 3 };
+console.log(point);
+var deck = {
+    suits: ["one", "two", "three", "four", "five"],
+    cards: [1, 2, 3, 4, 5],
+    createCard: function () {
+        var _this = this;
+        return function () {
+            var pickedSuit = 2;
+            var pickedCard = 3;
+            return {
+                suit: _this.suits[pickedSuit],
+                card: _this.cards[pickedCard]
+            };
+        };
+    }
+};
+var cardPicker = deck.createCard();
+var pickedCard = cardPicker();
+console.log(pickedCard.suit + " " + pickedCard.card);
