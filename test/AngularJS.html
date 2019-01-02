@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>AngularJS</title>
+    <script src="../config/angular.min.js"></script>
+    <style>
+        li {
+            float: left;
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        h3 {
+            clear: both;
+        }
+
+        #div {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div" ng-app="myApp" ng-controller="myCtrl">
+        <div id="div1" ng-hide="hide">
+            <h1>Hello</h1>
+            <input ng-model="firstName" />
+            <p></p>
+            <input ng-model="lastName" />
+            <p>{{fullName() | uppercase}}</p>
+            <h2>{{persion.age}}</h2>
+            <ul>
+                <li ng-repeat="x in arr">
+                    {{x}}
+                </li>
+            </ul>
+            <h3>URL{{myURL}}</h3>
+            <p>{{Hello}}</p>
+            <p>{{timeout}}</p>
+            <p>{{interval}}</p>
+            <p>{{result}}</p>
+            <li ng-repeat="x in counts">{{x | myFilter}}</li><br />
+            <select ng-model="selectSite" ng-options="x for (x,y) in phones"></select>
+            <p>{{selectSite.model}}</p>
+            <p>{{selectSite.color}}</p>
+            <p>{{selectSite.price}}</p>
+        </div>
+        <div id="div2">
+            <button ng-disabled="mySwitch">Button</button>
+            <input type="checkbox" ng-model = "mySwitch"> 按钮
+            <p></p>
+            {{mySwitch}}
+            <button ng-click="counts = counts + 1">点我</button>
+            <p></p>
+            {{counts}}
+            <button ng-click="toggle()">隐藏/显示</button>
+            <p>{{x1}}</p>
+            <p>{{x2}}</p>
+        </div>
+    </div>
+
+    <script>
+        var serviceBack = function () {
+            this.format = function (x) {
+                return x.toString(16);
+            }
+        }
+        var filterBack = function (param) {
+            return function (x) {
+                return param.format(x);
+            }
+        }
+        var app = angular.module("myApp", []);
+        app.service("myService", serviceBack);
+        app.filter("myFilter", ['myService', filterBack])
+        app.controller("myCtrl", function ($scope, $location, $http, $timeout, $interval, myService) {
+            $scope.persion = {
+                name: "jian",
+                age: 23
+            }
+            $scope.arr = [1, 2, 3, 4, 5];
+            $scope.firstName = "jian";
+            $scope.lastName = "qichen";
+            $scope.fullName = function () {
+                return this.firstName + this.lastName;
+            }
+            $scope.myURL = $location.absUrl();
+            $http.get("test.txt").then(function (response) {
+                $scope.Hello = response.data;
+            });
+            $scope.timeout = "hello";
+            $timeout(function () {
+                $scope.timeout = "world"
+            }, 3000);
+            $scope.interval = new Date();
+            $interval(function () {
+                $scope.interval = new Date();
+            }, 1000);
+            $scope.result = myService.format(250);
+            $scope.counts = [123, 456, 789];
+            $scope.phones = {
+                苹果: {
+                    model: "5s",
+                    color: "red",
+                    price: 3500
+                },
+                华为: {
+                    model: "6x",
+                    color: "green",
+                    price: 3800
+                },
+                小米: {
+                    model: "8",
+                    color: "blue",
+                    price: 3200
+                }
+            }
+            $scope.counts = 0;
+            $scope.toggle = function(){
+                $scope.hide = !$scope.hide;
+            }
+            $scope.x1 = "JIAN";
+            $scope.x2 = angular.lowercase($scope.x1);
+
+        })
+    </script>
+
+</body>
+
+</html>
